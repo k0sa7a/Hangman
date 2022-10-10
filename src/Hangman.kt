@@ -15,8 +15,14 @@ fun setupGame(){
     val wordIndex = Random.nextInt(words.size)
     word = words[wordIndex].uppercase(Locale.getDefault())
     println(word)
-    
+
+    for (i in word.indices) {
+        guesses.add('_')
+    }
+
     printGameStatus()
+
+    println("Please enter a letter:")
 }
 
 fun printGameStatus(){
@@ -28,6 +34,15 @@ fun printGameStatus(){
         4 -> print4Mistakes()
         5 -> print5Mistakes()
         6 -> print6Mistakes()
+    }
+    print("Word: ")
+    for (element in guesses) {
+        print("$element ")
+    }
+    if (remainingGuesses == 1) {
+        println("\nYou have $remainingGuesses guess left")
+    } else {
+        println("\nYou have $remainingGuesses guesses left")
     }
 }
 
