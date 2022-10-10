@@ -14,7 +14,6 @@ fun main(args: Array<String>) {
 fun setupGame(){
     val wordIndex = Random.nextInt(words.size)
     word = words[wordIndex].uppercase(Locale.getDefault())
-    println(word)
 
     for (i in word.indices) {
         guesses.add('_')
@@ -46,6 +45,13 @@ fun setupGame(){
         }
 
     } while (running)
+
+    if (mistakes == 6) {
+        printGameStatus()
+        println("Sorry, you lost! The word was: \"$word\"")
+    } else {
+        println("Congrats! You guessed the word: \"$word\"!")
+    }
 }
 
 fun printGameStatus(){
