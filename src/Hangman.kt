@@ -20,9 +20,32 @@ fun setupGame(){
         guesses.add('_')
     }
 
-    printGameStatus()
+    var running = true
 
-    println("Please enter a letter:")
+    do {
+        printGameStatus()
+        println("Please enter a letter:")
+        val input = readLine()?:""
+        if (input == "") {
+            println("That is not a valid input, please try again")
+        } else {
+            val letter = input[0].uppercaseChar()
+            if (word.contains(letter)) {
+                for (i in word.indices) {
+                    if (word[i] == letter) {
+                        guesses[i] = letter
+                    }
+                }
+                if (!guesses.contains('_')) running = false
+            } else {
+                println("Sorry, that's not part of the word!")
+                remainingGuesses--
+                mistakes++
+                if (mistakes == 6) running = false
+            }
+        }
+
+    } while (running)
 }
 
 fun printGameStatus(){
